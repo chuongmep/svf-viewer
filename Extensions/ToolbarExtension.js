@@ -26,6 +26,31 @@ ToolbarExtension.prototype.onToolbarCreated = function(toolbar) {
 ToolbarExtension.prototype.onToolbarCreated = function(toolbar) {
 
     var viewer = this.viewer;
+    var panel = this.panel;
+
+    // button to show the docking panel
+    var toolbarButtonShowDockingPanel = new Autodesk.Viewing.UI.Button('devPanel');
+    toolbarButtonShowDockingPanel.onClick = function (e) {
+        // if null, create it
+        if (panel == null) {
+            panel = new DevPanel(viewer, viewer.container,
+                'devPanel', 'My Panel');
+        }
+        // show/hide docking panel
+        panel.setVisible(!panel.isVisible());
+    };
+    // set image icon button in stlye.css
+    // myAwesomeToolbarButton CSS class should be defined on your .css file
+    // you may include icons, below is a sample class:
+    /*
+    .myAwesomeToolbarButton {
+        background-image: url(/img/myAwesomeIcon.png);
+        background-size: 24px;
+        background-repeat: no-repeat;
+        background-position: center;
+    }*/
+    toolbarButtonShowDockingPanel.addClass('panel-button');
+    toolbarButtonShowDockingPanel.setToolTip('Panel Show/Hide');
 
     // button export metadata from object selection
     var exportButton = new Autodesk.Viewing.UI.Button('export-metadata-button');
@@ -39,12 +64,14 @@ ToolbarExtension.prototype.onToolbarCreated = function(toolbar) {
     var devButton = new Autodesk.Viewing.UI.Button('dev-button');
     devButton.onClick = function(e) {
         // TODO: dev feature
+        alert("TODO: dev feature");
     };
     devButton.addClass('dev-button');
     devButton.setToolTip('Show Dev Feature');
 
     // SubToolbar
     this.subToolbar = new Autodesk.Viewing.UI.ControlGroup('dev-toolbar');
+    this.subToolbar.addControl(toolbarButtonShowDockingPanel);
     this.subToolbar.addControl(exportButton);
     this.subToolbar.addControl(devButton);
     toolbar.addControl(this.subToolbar);
