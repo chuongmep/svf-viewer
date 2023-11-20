@@ -1,28 +1,40 @@
 <head>
-	<meta charset="utf-8" />
-	<title>My House Singapore</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-	<link rel="stylesheet" href="./skeleton.min.css">
-	<link rel="shortcut icon" href="#">
+    <meta charset="utf-8"/>
+    <title>My House Singapore</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="./skeleton.min.css">
+    <link rel="stylesheet"  href="style.css">
+    <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.93/style.min.css"
+          type="text/css">
+    <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.93/viewer3D.min.js"></script>
+    <link rel="shortcut icon" href="#">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 
 <body style="margin:0; overflow-y: hidden;">
 
-  <div class="container">
+<div class="container">
     <nav class="navbar">
-      <div class="container">
-        <ul class="navbar-list">
-          <li class="navbar-item"><img class="navbar-img" src="logo.png" width="150" height="30"/></li>
-          <li class="navbar-itemr"><button onClick="window.open('https://github.com/chuongmep/svf-viewer')" class="navbar-button">Github</button></li>
-        </ul>
-      </div>
+        <div class="container">
+            <ul class="navbar-list">
+                <li class="navbar-item"><img class="navbar-img" src="logo.png" width="150" height="30"/></li>
+                <li class="navbar-itemr">
+                    <button onClick="window.open('https://github.com/chuongmep/svf-viewer')" class="navbar-button">
+                        Github
+                    </button>
+                </li>
+            </ul>
+        </div>
     </nav>
-  </div>
-  <div id="forgeViewer"></div>
+</div>
+<div id="forgeViewer"></div>
+<div id="MyViewerDiv"></div>
+<button id="MyAwesomeLockButton">Lock it!</button>
+<button id="MyAwesomeUnlockButton">Unlock it!</button>
+<script lang="JavaScript" src="Extensions/SaveSelectionObject.js"></script>
+<script lang="JavaScript" src="Extensions/ToolbarExtension.js"></script>
+<script language="JavaScript" src="app.js"></script>
+
 </body>
 
-<link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.min.css" type="text/css">
-<script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.min.js"></script>
-<script language="JavaScript" src="https://xf79h9aa3l.execute-api.us-west-2.amazonaws.com/toolkit2/api/_adsk.js"></script>
-<script language="JavaScript" src="app.js"></script>
