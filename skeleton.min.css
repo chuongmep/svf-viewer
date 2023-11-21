@@ -510,7 +510,8 @@ hr {
 .navbar-item {
     position: relative;
     float: left;
-    margin-bottom: 0;
+    /*set center image*/
+    margin-top: 20px;
 }
 
 .navbar-img {

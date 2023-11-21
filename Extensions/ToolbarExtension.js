@@ -55,7 +55,7 @@ ToolbarExtension.prototype.onToolbarCreated = function(toolbar) {
     // button export metadata from object selection
     var exportButton = new Autodesk.Viewing.UI.Button('export-metadata-button');
     exportButton.onClick = function(e) {
-        savePropertyTxt(viewer.model, viewer.getSelection()[0]);
+        savePropertyTxt(viewer);
     };
     exportButton.addClass('export-metadata-button');
     exportButton.setToolTip('Export Properties Selection');

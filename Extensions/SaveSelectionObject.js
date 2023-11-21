@@ -4,9 +4,26 @@ function getProperty(model, dbId) {
     });
 }
 
-function savePropertyTxt(model, dbId) {
+function savePropertyTxt(viewer) {
+
+    let dbId = viewer.getSelection()[0];
+    // if it is isolated, get the first object
+    if (dbId == null) {
+        if (viewer.getAggregateIsolation()[0] != null) {
+            dbId = viewer.getAggregateIsolation()[0].ids[0];
+        }
+    }
+    // if selection >1, popup windows just support one object
+    if (viewer.getSelection().length > 1) {
+        alert("Please select only one object");
+        return;
+    }
+    if(viewer.getSelection().length === 0){
+        alert("Please select one object");
+        return;
+    }
     // popup windows save to txt file
-    model.getProperties(dbId, function (data) {
+    viewer.model.getProperties(dbId, function (data) {
         console.log(data);
         let txt = JSON.stringify(data, null, 2);
         let blob = new Blob([txt], {type: "text/plain;charset=utf-8"});
