@@ -21,9 +21,6 @@ function loadModel(urn) {
     viewer.loadExtension('ToolbarExtension').then(function() {
         console.log('ToolbarExtension loaded');
     });
-    viewer.loadExtension('XLSExtension').then(function() {
-        console.log('XLSExtension loaded');
-    });
 }
 
 // EVENT SELECTION CHANGE
