@@ -14,5 +14,6 @@
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="viewer3D" level="application" />
     <orderEntry type="library" name="style" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
   </component>
 </module>
