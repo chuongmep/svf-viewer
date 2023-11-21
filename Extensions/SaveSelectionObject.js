@@ -1,5 +1,4 @@
 function getProperty(model, dbId) {
-    console.log("show properties by object Id");
     model.getProperties(dbId, function (data) {
         console.log(data);
     });
@@ -9,7 +8,7 @@ function savePropertyTxt(model, dbId) {
     // popup windows save to txt file
     model.getProperties(dbId, function (data) {
         console.log(data);
-        let txt = JSON.stringify(data);
+        let txt = JSON.stringify(data, null, 2);
         let blob = new Blob([txt], {type: "text/plain;charset=utf-8"});
         saveAs(blob, "properties.json");
     });

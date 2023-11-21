@@ -4,6 +4,12 @@
 .blue-button {
     background: blue;
 }
+.search-button {
+    background-image: url(img/search.png);
+    background-size: 36px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 .panel-button{
     background-image: url(img/panel.png);
     background-size: 36px;

@@ -34,7 +34,7 @@ ToolbarExtension.prototype.onToolbarCreated = function(toolbar) {
         // if null, create it
         if (panel == null) {
             panel = new DevPanel(viewer, viewer.container,
-                'devPanel', 'My Panel');
+                'devPanel', 'Search Model');
         }
         // show/hide docking panel
         panel.setVisible(!panel.isVisible());
@@ -49,8 +49,8 @@ ToolbarExtension.prototype.onToolbarCreated = function(toolbar) {
         background-repeat: no-repeat;
         background-position: center;
     }*/
-    toolbarButtonShowDockingPanel.addClass('panel-button');
-    toolbarButtonShowDockingPanel.setToolTip('Panel Show/Hide');
+    toolbarButtonShowDockingPanel.addClass('search-button');
+    toolbarButtonShowDockingPanel.setToolTip('Search Model');
 
     // button export metadata from object selection
     var exportButton = new Autodesk.Viewing.UI.Button('export-metadata-button');
