@@ -101,7 +101,15 @@ LoadModelPanel.prototype.constructor = LoadModelPanel;
 function getCookie(name) {
     let value = "; " + document.cookie;
     let parts = value.split("; " + name + "=");
-    if (parts.length === 2) return parts.pop().split(";").shift();
+    if (parts.length === 2){
+        let value = parts.pop().split(";").shift();
+        if (value === "undefined"){
+            return "";
+        }
+    }
+    else value = "";
+    return value;
+
 }
 function setCooke(name,value) {
     // clear cookie
