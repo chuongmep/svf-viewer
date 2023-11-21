@@ -31,7 +31,7 @@
 .export-metadata-button {
     /*background: blue;*/
     /* set image at folder img*/
-    background-image: url(img/json.png);
+    background-image: url(img/save.png);
     background-size: 36px;
     background-repeat: no-repeat;
     background-position: center;
