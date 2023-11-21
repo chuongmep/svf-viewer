@@ -18,7 +18,7 @@ function savePropertyTxt(viewer) {
         alert("Please select only one object");
         return;
     }
-    if(viewer.getSelection().length === 0){
+    if (viewer.getSelection().length === 0) {
         alert("Please select one object");
         return;
     }
@@ -45,3 +45,32 @@ function saveAs(blob, fileName) {
         window.URL.revokeObjectURL(url);
     }, 1000);
 }
+
+// EVENT SELECTION CHANGE
+function selectionOnChange(event) {
+
+    // get object id
+    let dbId = event.dbIdArray[0];
+    // get object id
+    console.log("Object Id: ", dbId);
+    const tree = viewer.model.getInstanceTree();
+    const frags = viewer.model.getFragmentList();
+    tree.enumNodeFragments(dbId, function(fragid) {
+        let bounds = new THREE.Box3();
+        frags.getWorldBounds(fragid, bounds);
+        console.log("Bounding Box",bounds);
+        let center = calcCenter(bounds);
+        console.log("Center",center);
+    }, true);
+    // get properties by object id
+    getProperty(this.model, dbId);
+}
+
+function calcCenter(bbox) {
+    return new THREE.Vector3(
+        (bbox.max.x + bbox.min.x) / 2,
+        (bbox.max.y + bbox.min.y) / 2,
+        (bbox.max.z + bbox.min.z) / 2
+    );
+}
+

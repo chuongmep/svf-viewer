@@ -25,9 +25,9 @@ ToolbarExtension.prototype.onToolbarCreated = function(toolbar) {
 };
 ToolbarExtension.prototype.onToolbarCreated = function(toolbar) {
 
-    var viewer = this.viewer;
-    var panel = this.panel;
-
+    let viewer = this.viewer;
+    let panel = this.panel;
+    let modelPanel = this.modelPanel;
     // button to show the docking panel
     var toolbarButtonShowDockingPanel = new Autodesk.Viewing.UI.Button('devPanel');
     toolbarButtonShowDockingPanel.onClick = function (e) {
@@ -39,6 +39,21 @@ ToolbarExtension.prototype.onToolbarCreated = function(toolbar) {
         // show/hide docking panel
         panel.setVisible(!panel.isVisible());
     };
+    toolbarButtonShowDockingPanel.addClass('search-button');
+    toolbarButtonShowDockingPanel.setToolTip('Search Model');
+    // button to show the docking panel
+    let buttonLoadModel = new Autodesk.Viewing.UI.Button('modelPanel');
+    buttonLoadModel.onClick = function (e) {
+        // if null, create it
+        if (modelPanel == null) {
+            modelPanel = new LoadModelPanel(viewer, viewer.container,
+                'modelPanel', 'Load New Model');
+        }
+        // show/hide docking panel
+        modelPanel.setVisible(!modelPanel.isVisible());
+    };
+    buttonLoadModel.addClass('load-model-panel-button');
+    buttonLoadModel.setToolTip('Load New Model');
     // set image icon button in stlye.css
     // myAwesomeToolbarButton CSS class should be defined on your .css file
     // you may include icons, below is a sample class:
@@ -49,8 +64,7 @@ ToolbarExtension.prototype.onToolbarCreated = function(toolbar) {
         background-repeat: no-repeat;
         background-position: center;
     }*/
-    toolbarButtonShowDockingPanel.addClass('search-button');
-    toolbarButtonShowDockingPanel.setToolTip('Search Model');
+
 
     // button export metadata from object selection
     var exportButton = new Autodesk.Viewing.UI.Button('export-metadata-button');
@@ -81,6 +95,7 @@ ToolbarExtension.prototype.onToolbarCreated = function(toolbar) {
     // SubToolbar
     this.subToolbar = new Autodesk.Viewing.UI.ControlGroup('dev-toolbar');
     this.subToolbar.addControl(toolbarButtonShowDockingPanel);
+    this.subToolbar.addControl(buttonLoadModel);
     this.subToolbar.addControl(exportButton);
     this.subToolbar.addControl(exportExcelButton);
     this.subToolbar.addControl(devButton);
