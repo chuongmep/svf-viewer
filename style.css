@@ -43,3 +43,9 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+.geometry-button {
+    background-image: url(img/geometry.png);
+    background-size: 36px;
+    background-repeat: no-repeat;
+    background-position: center;
+}

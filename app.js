@@ -10,7 +10,7 @@ function loadModel(urn) {
 
     };
     var config3d = {
-        extensions: ['Autodesk.Sample.CustomPropertyPanelExtension','ToolbarExtension'],
+        extensions: ['Autodesk.Sample.CustomPropertyPanelExtension','ToolbarExtension','TransExplorerExtension'],
     };
     let forgeViewer = document.getElementById('forgeViewer');
     viewer = new Autodesk.Viewing.GuiViewer3D(forgeViewer,config3d);

@@ -92,12 +92,20 @@ ToolbarExtension.prototype.onToolbarCreated = function(toolbar) {
     devButton.addClass('dev-button');
     devButton.setToolTip('Show Dev Feature');
 
+    // geometry button snooping
+    let geometryButton = new Autodesk.Viewing.UI.Button('geometry-button');
+    geometryButton.onClick = function(e) {
+        alert("TODO: geometry snooping");
+    }
+    geometryButton.addClass('geometry-button');
+    geometryButton.setToolTip('Geometry Snooping');
     // SubToolbar
     this.subToolbar = new Autodesk.Viewing.UI.ControlGroup('dev-toolbar');
     this.subToolbar.addControl(toolbarButtonShowDockingPanel);
     this.subToolbar.addControl(buttonLoadModel);
     this.subToolbar.addControl(exportButton);
     this.subToolbar.addControl(exportExcelButton);
+    this.subToolbar.addControl(geometryButton);
     this.subToolbar.addControl(devButton);
     toolbar.addControl(this.subToolbar);
 };
