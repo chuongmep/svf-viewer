@@ -60,6 +60,15 @@ ToolbarExtension.prototype.onToolbarCreated = function(toolbar) {
     exportButton.addClass('export-metadata-button');
     exportButton.setToolTip('Export Properties Selection');
 
+    // button export to excel
+    const fileName = "metadata";
+    var exportExcelButton = new Autodesk.Viewing.UI.Button('toolbarXLS');
+    exportExcelButton.onClick = function (e) {
+        ApsXLS.downloadXLSX(fileName.replace(/\./g, '') + ".xlsx", statusCallback );/*Optional*/
+    };
+    exportExcelButton.addClass('excel-button');
+    exportExcelButton.setToolTip('Export to .XLSX');
+
     // button dev feature
     var devButton = new Autodesk.Viewing.UI.Button('dev-button');
     devButton.onClick = function(e) {
@@ -73,6 +82,7 @@ ToolbarExtension.prototype.onToolbarCreated = function(toolbar) {
     this.subToolbar = new Autodesk.Viewing.UI.ControlGroup('dev-toolbar');
     this.subToolbar.addControl(toolbarButtonShowDockingPanel);
     this.subToolbar.addControl(exportButton);
+    this.subToolbar.addControl(exportExcelButton);
     this.subToolbar.addControl(devButton);
     toolbar.addControl(this.subToolbar);
 };
@@ -83,4 +93,11 @@ ToolbarExtension.prototype.unload = function() {
         this.subToolbar = null;
     }
 };
+
+// export excel status callback
+let statusCallback = function(completed, message) {
+    $.notify(message, { className: "info", position:"bottom right" });
+    $('#downloadExcel').prop("disabled", !completed);
+}
+
 Autodesk.Viewing.theExtensionManager.registerExtension('ToolbarExtension', ToolbarExtension);

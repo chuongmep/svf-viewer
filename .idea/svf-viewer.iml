@@ -8,7 +8,11 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="xlsx.full" level="application" />
     <orderEntry type="library" name="style" level="application" />
     <orderEntry type="library" name="viewer3D" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="viewer3D" level="application" />
+    <orderEntry type="library" name="style" level="application" />
   </component>
 </module>

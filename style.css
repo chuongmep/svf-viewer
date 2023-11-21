@@ -30,3 +30,10 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+
+.excel-button {
+    background-image: url(img/excel.png);
+    background-size: 36px;
+    background-repeat: no-repeat;
+    background-position: center;
+}

@@ -1,3 +1,5 @@
+
+let viewer = null;
 function loadModel(urn) {
     options = {
         useADP: false,
@@ -10,7 +12,7 @@ function loadModel(urn) {
     // };
     var forgeViewer = document.getElementById('forgeViewer');
     // let viewer = new Autodesk.Viewing.GuiViewer3D(forgeViewer,config3d);
-    let viewer = new Autodesk.Viewing.GuiViewer3D(forgeViewer);
+    viewer = new Autodesk.Viewing.GuiViewer3D(forgeViewer);
     Autodesk.Viewing.Initializer(options);
     viewer.start(urn, options, () => {
         console.log('Viewer started')
@@ -18,6 +20,9 @@ function loadModel(urn) {
     viewer.addEventListener(Autodesk.Viewing.SELECTION_CHANGED_EVENT, this.selectionOnChange);
     viewer.loadExtension('ToolbarExtension').then(function() {
         console.log('ToolbarExtension loaded');
+    });
+    viewer.loadExtension('XLSExtension').then(function() {
+        console.log('XLSExtension loaded');
     });
 }
 
