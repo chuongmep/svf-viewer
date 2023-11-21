@@ -1,6 +1,7 @@
 
 let viewer = null;
-
+let md_viewables = null;
+let md_ViewerDocument = null;
 /// load model local
 function loadModel(urn) {
     options = {
@@ -52,44 +53,45 @@ function loadModelIOnline(urn,token) {
     });
     let documentId = 'urn:' + urn; // Add the string 'urn:' to the actual URN value
 
-    function onDocumentLoadFailure() {
-        console.error('Failed to load model');
-    }
-
     Autodesk.Viewing.Document.load(documentId, onDocumentLoadSuccess, onDocumentLoadFailure)
     // viewer.addEventListener(Autodesk.Viewing.SELECTION_CHANGED_EVENT, this.selectionOnChange);
     // viewer.loadExtension('ToolbarExtension').then(function() {
     //     console.log('ToolBar Dev loaded');
     // });
 }
+function onDocumentLoadFailure() {
+    console.error('Failed to load model');
+}
 function onDocumentLoadSuccess(viewerDocument) {
 
     let viewerapp = viewerDocument.getRoot();
 
-    let md_ViewerDocument=viewerDocument; // Hold the viewerDocument in a global variable so that we can access it within SelectViewable()
-    let md_viewables = viewerapp.search({'type':'geometry'});
+    md_ViewerDocument=viewerDocument; // Hold the viewerDocument in a global variable so that we can access it within SelectViewable()
+    md_viewables = viewerapp.search({'type':'geometry'});
 
     if (md_viewables.length === 0) {
         console.error('Document contains no viewables.');
         return;
     }
 
-    // // populate the Choose viewables drop down with the viewable name
-    // var sel = document.getElementById('viewables');
-    // console.log(sel);
-    // for(var i = 0; i < md_viewables.length; i++) {
-    //     var opt = document.createElement('option');
-    //     opt.innerHTML = md_viewables[i].data.name;
-    //     opt.value =  md_viewables[i].data.name;
-    //
-    //     sel.appendChild(opt);
-    // }
-
     viewer.loadDocumentNode(viewerDocument, md_viewables[0]);
     viewer.addEventListener(Autodesk.Viewing.SELECTION_CHANGED_EVENT, this.selectionOnChange);
     viewer.loadExtension('ToolbarExtension').then(function() {
-        console.log('ToolBar Dev loaded');
+        console.log('ToolbarExtension loaded');
     });
+
+    // populate the Choose viewables drop down with the viewable name
+    var sel = document.getElementById('viewables');
+    console.log("Selection: ", sel);
+    console.log("Viewables: ", md_viewables);
+    for(var i = 0; i < md_viewables.length; i++) {
+        var opt = document.createElement('option');
+        opt.innerHTML = md_viewables[i].data.name;
+        opt.value =  md_viewables[i].data.name;
+
+        sel.appendChild(opt);
+    }
+
     <!-- Make the Choose viewable drop-down visible, if and only if only there are more than one viewables to display-->
 
 

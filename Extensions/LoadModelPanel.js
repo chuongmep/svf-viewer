@@ -77,21 +77,22 @@ function LoadModelPanel(viewer, container, id, title, options){
         setCooke("loadtoken",token);
         setCooke("loadurn",urn);
         loadModelIOnline(urn,token);
+
     });
 
-    // new form dropdown list to select viewables
-    // let sel = document.createElement('select');
-    // sel.setAttribute("id", "viewables");
-    // sel.setAttribute("class", "viewables");
-    // sel.style.margin = '10px';
-    // sel.style.width = '30em';
-    // sel.style.height = '30px';
-    // sel.style.display = 'flex';
-    // div.appendChild(sel);
-    // // add event listener to the load button
-    // sel.addEventListener('click', function () {
-    //
-    // });
+    //new form dropdown list to select viewables
+    let sel = document.createElement('select');
+    sel.setAttribute("id", "viewables");
+    sel.setAttribute("class", "viewables");
+    sel.style.margin = '10px';
+    sel.style.width = '30em';
+    sel.style.height = '30px';
+    sel.style.display = 'flex';
+    div.appendChild(sel);
+    // add event listener to the load button
+    sel.addEventListener('click', function () {
+
+    });
     this.container.appendChild(div);
 }
 
