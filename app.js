@@ -19,7 +19,7 @@ function loadModel(urn) {
     });
     viewer.addEventListener(Autodesk.Viewing.SELECTION_CHANGED_EVENT, this.selectionOnChange);
     viewer.loadExtension('ToolbarExtension').then(function() {
-        console.log('ToolbarExtension loaded');
+        console.log('ToolBar Dev loaded');
     });
 }
 
