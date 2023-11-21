@@ -34,6 +34,7 @@ class ModelData {
     getAllLeafComponents(callback) {
 
         // from https://learnforge.autodesk.io/#/viewer/extensions/panel?id=enumerate-leaf-nodes
+        // fix https://stackoverflow.com/questions/41558468/how-to-get-the-model-object-tree-of-2d-drawing
         // let instanceTree = _viewer.model.getData().instanceTree;
             // console.log(this._viewer)
         var instanceTree = viewer.model.getData().instanceTree;
