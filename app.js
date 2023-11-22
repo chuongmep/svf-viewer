@@ -127,6 +127,8 @@ function onDocumentLoadSuccess(viewerDocument) {
 
     viewer.loadDocumentNode(viewerDocument, md_viewables[0]);
     viewer.addEventListener(Autodesk.Viewing.SELECTION_CHANGED_EVENT, this.selectionOnChange);
+    // unload extension
+    viewer.unloadExtension('ToolbarExtension');
     viewer.loadExtension('ToolbarExtension').then(function () {
         console.log('ToolbarExtension loaded');
     });

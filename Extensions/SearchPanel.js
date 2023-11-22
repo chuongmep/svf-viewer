@@ -22,6 +22,28 @@ function SearchPanel(viewer, container, id, title, options) {
     div.style.marginBottom = '20px';
     // div.style.margin = '100px';
     // div.innerText = "My content here";
+
+    // add a checkbox for option search by element id
+    var checkbox = document.createElement('input');
+    checkbox.setAttribute("type", "checkbox");
+    checkbox.setAttribute("id", "isDbId");
+    checkbox.setAttribute("name", "isDbId");
+    checkbox.setAttribute("value", "dbId");
+    checkbox.setAttribute("class", "isDbId");
+    checkbox.style.margin = '10px';
+    checkbox.style.width = 'auto';
+    checkbox.style.height = 'auto';
+    checkbox.style.display = 'absolute';
+    div.appendChild(checkbox);
+    var label = document.createElement('label');
+    label.setAttribute("for", "radio");
+    label.innerText = "Search by Object Id";
+    label.style.margin = '10px';
+    label.style.width = 'auto';
+    label.style.height = 'auto';
+    label.style.display = 'absolute';
+    div.appendChild(label);
+
     // create a search box and button to execute search
     var field = document.createElement('input');
     field.setAttribute("type", "text");
@@ -43,7 +65,10 @@ function SearchPanel(viewer, container, id, title, options) {
     searchButton.style.color = 'white';
     // set tooltip
     searchButton.setAttribute("title", "Search Properties");
+
     div.appendChild(searchButton);
+
+
 
     // add search results to the panel
     var results = document.createElement('div');
@@ -74,12 +99,14 @@ SearchPanel.prototype.constructor = SearchPanel;
 function searchItems(viewer) {
 
     let searchValue = document.getElementById("search-field").value;
+    console.log("searchValue: ", searchValue);
     if (searchValue === "") {
         viewer.fitToView();
         return;
     }
     // if user input dbId
-    if (searchValue.match(/^[0-9]+$/) != null) {
+    let flag = document.getElementById("isDbId").checked;
+    if (flag === true && searchValue.match(/^[0-9]+$/) != null) {
         // get select by object id
         let dbId = parseInt(document.getElementById("search-field").value);
         // find object id in model
