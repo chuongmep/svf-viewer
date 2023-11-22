@@ -10,7 +10,7 @@ function loadModel(urn) {
 
     };
     var config3d = {
-        extensions: ['Autodesk.Sample.CustomPropertyPanelExtension','ToolbarExtension','TransExplorerExtension'],
+        extensions: ['ToolbarExtension'],
     };
     let forgeViewer = document.getElementById('forgeViewer');
     viewer = new Autodesk.Viewing.GuiViewer3D(forgeViewer,config3d);
@@ -92,9 +92,6 @@ function onDocumentLoadSuccess(viewerDocument) {
     viewer.addEventListener(Autodesk.Viewing.SELECTION_CHANGED_EVENT, this.selectionOnChange);
     viewer.loadExtension('ToolbarExtension').then(function() {
         console.log('ToolBar Dev loaded');
-    });
-    viewer.loadExtension('Autodesk.Sample.CustomPropertyPanelExtension').then(function() {
-        console.log('CustomPropertyPanelExtension loaded');
     });
     <!-- Make the Choose viewable drop-down visible, if and only if only there are more than one viewables to display-->
 
