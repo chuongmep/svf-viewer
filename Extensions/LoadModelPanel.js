@@ -106,6 +106,7 @@ function getCookie(name) {
         if (value === "undefined"){
             return "";
         }
+        return value;
     }
     else value = "";
     return value;
