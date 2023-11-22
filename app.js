@@ -9,20 +9,20 @@ function loadModel(urn) {
         isAEC: true,
 
     };
-    var config3d = {
-        extensions: ['ToolbarExtension'],
-    };
+    // var config3d = {
+    //     extensions: ['ToolbarExtension'],
+    // };
     let forgeViewer = document.getElementById('forgeViewer');
-    viewer = new Autodesk.Viewing.GuiViewer3D(forgeViewer,config3d);
-    //viewer = new Autodesk.Viewing.GuiViewer3D(forgeViewer);
+    // viewer = new Autodesk.Viewing.GuiViewer3D(forgeViewer,config3d);
+    viewer = new Autodesk.Viewing.GuiViewer3D(forgeViewer);
     Autodesk.Viewing.Initializer(options);
     viewer.start(urn, options, () => {
         console.log('Viewer started')
     });
     viewer.addEventListener(Autodesk.Viewing.SELECTION_CHANGED_EVENT, this.selectionOnChange);
-    // viewer.loadExtension('ToolbarExtension').then(function() {
-    //     console.log('ToolBar Dev loaded');
-    // });
+    viewer.loadExtension('ToolbarExtension').then(function() {
+        console.log('ToolbarExtension loaded');
+    });
     // viewer.loadExtension('Autodesk.Sample.CustomPropertyPanelExtension').then(function() {
     //     console.log('CustomPropertyPanelExtension loaded');
     // });
@@ -91,7 +91,7 @@ function onDocumentLoadSuccess(viewerDocument) {
     viewer.loadDocumentNode(viewerDocument, md_viewables[0]);
     viewer.addEventListener(Autodesk.Viewing.SELECTION_CHANGED_EVENT, this.selectionOnChange);
     viewer.loadExtension('ToolbarExtension').then(function() {
-        console.log('ToolBar Dev loaded');
+        console.log('ToolbarExtension loaded');
     });
     <!-- Make the Choose viewable drop-down visible, if and only if only there are more than one viewables to display-->
 

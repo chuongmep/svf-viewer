@@ -33,7 +33,7 @@ ToolbarExtension.prototype.onToolbarCreated = function(toolbar) {
     toolbarButtonShowDockingPanel.onClick = function (e) {
         // if null, create it
         if (panel == null) {
-            panel = new DevPanel(viewer, viewer.container,
+            panel = new SearchPanel(viewer, viewer.container,
                 'devPanel', 'Search Model');
         }
         // show/hide docking panel

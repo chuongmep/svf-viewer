@@ -3,8 +3,9 @@
 // *******************************************
 let guid = null;
 
-function DevPanel(viewer, container, id, title, options) {
+function SearchPanel(viewer, container, id, title, options) {
     this.viewer = viewer;
+    // get viewer name
     Autodesk.Viewing.UI.DockingPanel.call(this, container, id, title, options);
 
     // the style of the docking panel
@@ -15,7 +16,6 @@ function DevPanel(viewer, container, id, title, options) {
     this.container.style.width = "auto";
     this.container.style.height = "auto";
     this.container.style.resize = "auto";
-
     // this is where we should place the content of our panel
     var div = document.createElement('div');
     // set style to docking panel, search field and button on top
@@ -67,25 +67,27 @@ function DevPanel(viewer, container, id, title, options) {
 
 }
 
-DevPanel.prototype = Object.create(Autodesk.Viewing.UI.DockingPanel.prototype);
-DevPanel.prototype.constructor = DevPanel;
+SearchPanel.prototype = Object.create(Autodesk.Viewing.UI.DockingPanel.prototype);
+SearchPanel.prototype.constructor = SearchPanel;
 
 
 // search model properties by filters
 function searchItems(viewer) {
 
-    if (document.getElementById("search-field").value === "") {
+    let searchValue = document.getElementById("search-field").value;
+    if (searchValue === "") {
         viewer.fitToView();
         return;
     }
-    // if user input dbId or guid, allow console information of object properties
-    if (document.getElementById("search-field").value.match(/^[0-9]+$/) != null) {
+    // if user input dbId
+    if (searchValue.match(/^[0-9]+$/) != null) {
         // get select by object id
         let dbId = parseInt(document.getElementById("search-field").value);
         // find object id in model
         if (viewer.model.getData().instanceTree.nodeAccess.dbIdToIndex[dbId] != null) {
-            zoomAndIsoObject(viewer, dbId);
+            // zoom to that object and isolate
             getProperty(viewer.model, dbId);
+            zoomAndIsoObject(viewer, dbId);
             return;
         }
     }
