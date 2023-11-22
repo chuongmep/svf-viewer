@@ -16,6 +16,12 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+.download-panel-button{
+    background-image: url(img/database.png);
+    background-size: 36px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 .panel-button{
     background-image: url(img/panel.png);
     background-size: 36px;

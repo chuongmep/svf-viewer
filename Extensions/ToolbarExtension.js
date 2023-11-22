@@ -28,6 +28,7 @@ ToolbarExtension.prototype.onToolbarCreated = function(toolbar) {
     let viewer = this.viewer;
     let panel = this.panel;
     let modelPanel = this.modelPanel;
+    let downloadPanel = this.downloadPanel;
     // button to show the docking panel
     var toolbarButtonShowDockingPanel = new Autodesk.Viewing.UI.Button('devPanel');
     toolbarButtonShowDockingPanel.onClick = function (e) {
@@ -54,17 +55,18 @@ ToolbarExtension.prototype.onToolbarCreated = function(toolbar) {
     };
     buttonLoadModel.addClass('load-model-panel-button');
     buttonLoadModel.setToolTip('Load New Model');
-    // set image icon button in stlye.css
-    // myAwesomeToolbarButton CSS class should be defined on your .css file
-    // you may include icons, below is a sample class:
-    /*
-    .myAwesomeToolbarButton {
-        background-image: url(/img/myAwesomeIcon.png);
-        background-size: 24px;
-        background-repeat: no-repeat;
-        background-position: center;
-    }*/
 
+    // button download database or whatever
+    let downloadButton = new Autodesk.Viewing.UI.Button('download-panel-button');
+    downloadButton.onClick = function(e) {
+        if (downloadPanel == null) {
+            downloadPanel = new DownloadPanel(viewer, viewer.container,
+                'downloadPanel', 'Download Database');
+        }
+        downloadPanel.setVisible(!downloadPanel.isVisible());
+    };
+    downloadButton.addClass('download-panel-button');
+    downloadButton.setToolTip('Download Raw Data Model');
 
     // button export metadata from object selection
     var exportButton = new Autodesk.Viewing.UI.Button('export-metadata-button');
@@ -84,7 +86,7 @@ ToolbarExtension.prototype.onToolbarCreated = function(toolbar) {
     exportExcelButton.setToolTip('Export to .XLSX');
 
     // button dev feature
-    var devButton = new Autodesk.Viewing.UI.Button('dev-button');
+    let devButton = new Autodesk.Viewing.UI.Button('dev-button');
     devButton.onClick = function(e) {
         // TODO: dev feature
         alert("TODO: dev feature");
@@ -103,6 +105,7 @@ ToolbarExtension.prototype.onToolbarCreated = function(toolbar) {
     this.subToolbar = new Autodesk.Viewing.UI.ControlGroup('dev-toolbar');
     this.subToolbar.addControl(toolbarButtonShowDockingPanel);
     this.subToolbar.addControl(buttonLoadModel);
+    this.subToolbar.addControl(downloadButton);
     this.subToolbar.addControl(exportButton);
     this.subToolbar.addControl(exportExcelButton);
     this.subToolbar.addControl(geometryButton);

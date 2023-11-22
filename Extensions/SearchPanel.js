@@ -7,7 +7,6 @@ function SearchPanel(viewer, container, id, title, options) {
     this.viewer = viewer;
     // get viewer name
     Autodesk.Viewing.UI.DockingPanel.call(this, container, id, title, options);
-
     // the style of the docking panel
     // use this built-in style to support Themes on Viewer 4+
     this.container.classList.add('docking-panel-container-solid-color-a');
