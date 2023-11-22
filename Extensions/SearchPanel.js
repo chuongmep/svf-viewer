@@ -37,7 +37,7 @@ function SearchPanel(viewer, container, id, title, options) {
     div.appendChild(checkbox);
     var label = document.createElement('label');
     label.setAttribute("for", "radio");
-    label.innerText = "Search by Object Id";
+    label.innerText = "Search by DbId";
     label.style.margin = '10px';
     label.style.width = 'auto';
     label.style.height = 'auto';
@@ -154,4 +154,24 @@ function zoomAndIsoObject(viewer, dbId) {
     console.log('Zoom Iso Object: ', dbId);
     viewer.isolate(dbId);
     viewer.fitToView(dbId);
+}
+
+
+// allow search by element id in revit
+function searchByElementId(viewer,elementId){
+    // get all name of object
+    let allName = [];
+    // get all object id
+    let allDbId = [];
+    var objecs = viewer.model.getData().instanceTree.nodeAccess.dbIdToIndex;
+    for (var key in objecs) {
+        if (objecs.hasOwnProperty(key)) {
+            let name =viewer.model.getData().instanceTree.getNodeName(key);
+            if(name!==undefined && name.includes(elementId)){
+                allName.push(name);
+                allDbId.push(key);
+            }
+        }
+    }
+   return allDbId;
 }
