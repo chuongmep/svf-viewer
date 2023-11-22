@@ -124,7 +124,7 @@ function searchItems(viewer) {
         guid = document.getElementById("search-field").value;
         // find external id in model : https://aps.autodesk.com/blog/get-dbid-externalid
         console.log("externalId: ", guid);
-        viewer.model.getExternalIdMapping(function (mapping) {
+        viewer.model.getExternalIdMapping(function (mapping) {  
             mappingAndIsolate(mapping, viewer);
         });
         return;
